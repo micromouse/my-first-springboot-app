@@ -12,7 +12,7 @@ public class WebApplication {
         ConfigurableApplicationContext context = SpringApplication.run(WebApplication.class, args);
 
         Jedis jedis = context.getBean(Jedis.class);
-        System.out.println(jedis);
+        //System.out.println(jedis);
 
         //设置值
         jedis.set("hello", "world");
