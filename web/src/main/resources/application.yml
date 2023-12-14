@@ -1,7 +1,17 @@
 server:
-  port: 8080
+  port: 8081
+
 
 spring:
   redis:
     host: localhost
     port: 6379
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
