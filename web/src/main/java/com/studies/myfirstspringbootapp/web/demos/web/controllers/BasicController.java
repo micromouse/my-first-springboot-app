@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.studies.myfirstspringbootapp.web.demos.web;
+package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 
+import com.studies.myfirstspringbootapp.web.demos.web.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

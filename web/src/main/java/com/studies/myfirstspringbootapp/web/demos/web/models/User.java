@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.studies.myfirstspringbootapp.web.demos.web;
+package com.studies.myfirstspringbootapp.web.demos.web.models;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
