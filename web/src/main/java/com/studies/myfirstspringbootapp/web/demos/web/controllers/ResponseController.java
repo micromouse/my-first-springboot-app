@@ -2,6 +2,7 @@ package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 
 import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import com.studies.myfirstspringbootapp.web.demos.web.models.User;
+import com.studies.myfirstspringbootapp.web.demos.web.service.ResponseService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/response")
 public class ResponseController {
+    private final ResponseService responseService;
+
+    /**
+     * 初始化响应控制器
+     *
+     * @param responseService ：响应服务接口
+     */
+    public ResponseController(ResponseService responseService) {
+        this.responseService = responseService;
+    }
+
     /**
      * 成功响应
      *
@@ -18,7 +30,7 @@ public class ResponseController {
      */
     @RequestMapping("/success")
     public Result<Object> success() {
-        return Result.success();
+        return responseService.SuccessResult();
     }
 
     /**
@@ -45,6 +57,7 @@ public class ResponseController {
 
     /**
      * 用户信息响应
+     *
      * @return : 响应结果
      */
     @RequestMapping("/user")

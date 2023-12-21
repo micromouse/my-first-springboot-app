@@ -50,7 +50,7 @@ public class Result<TData> {
      * @return : 成功结果
      */
     public static <TData> Result<TData> success(TData data) {
-        return new Result<>(1, null, data);
+        return new Result<>(1, "success", data);
     }
 
     /**
