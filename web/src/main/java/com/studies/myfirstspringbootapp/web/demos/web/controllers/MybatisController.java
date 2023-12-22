@@ -27,6 +27,7 @@ public class MybatisController {
 
     /**
      * 获得服务器配置信息集合
+     *
      * @return ：服务器配置信息集合
      */
     @RequestMapping("/list")
@@ -35,5 +36,14 @@ public class MybatisController {
         return Result.success(serverConfigs);
     }
 
-
+    /**
+     * 按key查找服务器配置信息
+     * @param key ：key
+     * @return ：服务器配置信息
+     */
+    @RequestMapping("/findByKey")
+    public Result<ServerConfig> findByKey(String key) {
+        ServerConfig serverConfig = serverConfigMapper.findByKey(key);
+        return Result.success(serverConfig);
+    }
 }

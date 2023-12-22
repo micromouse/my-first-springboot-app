@@ -2,6 +2,7 @@ package com.studies.myfirstspringbootapp.web.demos.web.dao;
 
 import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface ServerConfigMapper {
      */
     @Select("SELECT * FROM ServerConfig ORDER BY `key` ASC")
     List<ServerConfig> list();
+
+    @Select("SELECT * FROM ServerConfig WHERE `key` = #{key}")
+    ServerConfig findByKey(@Param("key") String key);
 }
