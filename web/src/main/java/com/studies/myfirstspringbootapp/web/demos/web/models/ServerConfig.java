@@ -13,9 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServerConfig {
+    private Integer id;
     private String key;
+    private String cluster;
     private String value;
     private String comment;
-    private LocalDateTime dataChange_CreatedTime;
-    private LocalDateTime dataChange_LastTime;
+    private boolean isDeleted;
+    private Integer deletedAt;
+    private String dataChangeCreatedBy;
+    private LocalDateTime dataChangeCreatedTime;
+    private String dataChangeLastModifiedBy;
+    private LocalDateTime dataChangeLastTime;
 }
