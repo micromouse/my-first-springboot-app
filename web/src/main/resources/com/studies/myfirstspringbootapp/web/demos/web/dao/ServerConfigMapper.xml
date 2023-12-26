@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.studies.myfirstspringbootapp.web.demos.web.dao.ServerConfigMapper">
+    <sql id="commonSelectSQL">
+        SELECT *
+        FROM serverconfig
+    </sql>
+    <select id="queryByXml" resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
+        <include refid="commonSelectSQL"/>
+        <where>
+            <if test="createdTimeStart != null">
+                datachange_createdtime >= #{createdTimeStart}
+            </if>
+            <if test="createdTimeEnd != null">
+                AND datachange_createdtime &lt; #{createdTimeEnd}
+            </if>
+            <if test="key != null and key !=''">
+                AND `key` LIKE CONCAT('%',#{key},'%')
+            </if>
+        </where>
+    </select>
+    <select id="list" resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
+        <include refid="commonSelectSQL"/>
+        ORDER BY `key`
+    </select>
+
+    <select id="findByKeys" resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
+        <include refid="commonSelectSQL"/>
+        WHERE `key` IN
+        <foreach collection="keys" item="key" separator="," open="(" close=")">
+            #{key}
+        </foreach>
+    </select>
+</mapper>
