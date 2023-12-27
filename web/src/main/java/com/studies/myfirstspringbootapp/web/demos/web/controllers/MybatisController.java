@@ -3,10 +3,9 @@ package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 import com.studies.myfirstspringbootapp.web.demos.web.dao.ServerConfigMapper;
 import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ import java.util.List;
 @RequestMapping("/mybatis")
 public class MybatisController {
     private final ServerConfigMapper serverConfigMapper;
+    private final Logger logger = LoggerFactory.getLogger(MybatisController.class);
 
     /**
      * 初始化Mybatis控制器
@@ -29,11 +29,13 @@ public class MybatisController {
 
     /**
      * 获得服务器配置信息集合
+     * 限定Get请求也可以用[@GetMapping("/list")]
      *
      * @return ：服务器配置信息集合
      */
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Result<List<ServerConfig>> list() {
+        logger.info("正在获取所有服务器配置信息");
         List<ServerConfig> serverConfigs = serverConfigMapper.list();
         serverConfigs.forEach(System.out::println);
         return Result.success(serverConfigs);
@@ -45,7 +47,7 @@ public class MybatisController {
      * @param key ：key
      * @return ：服务器配置信息
      */
-    @RequestMapping("/findByKey")
+    @GetMapping("/findByKey")
     public Result<ServerConfig> findByKey(String key) {
         ServerConfig serverConfig = serverConfigMapper.findByKey(key);
         return Result.success(serverConfig);
@@ -57,7 +59,7 @@ public class MybatisController {
      * @param id ：id
      * @return ：结果
      */
-    @RequestMapping(value = "/deleteById/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/deleteById/{id}")
     public Result<ServerConfig> deleteById(@PathVariable Integer id) {
         Integer count = serverConfigMapper.DeleteById(id);
         if (count == 0) {

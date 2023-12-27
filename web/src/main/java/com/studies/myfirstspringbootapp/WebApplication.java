@@ -6,9 +6,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
 
+/**
+ * 应用入口
+ */
 @SpringBootApplication
 public class WebApplication {
-
+    /**
+     * main
+     * @param args ：参数
+     */
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(WebApplication.class, args);
 
