@@ -6,6 +6,13 @@
         SELECT *
         FROM serverconfig
     </sql>
+    <insert id="Insert">
+        insert into ServerConfig(`Key`, Cluster, Value, Comment, IsDeleted, DeletedAt, DataChange_CreatedBy,
+                                 DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime)
+        values (#{key}, #{cluster}, #{value}, #{comment}, #{isDeleted}, #{deletedAt}, #{dataChangeCreatedBy},
+                #{dataChangeCreatedTime}, #{dataChangeLastModifiedBy}, #{dataChangeLastTime})
+    </insert>
+
     <select id="queryByXml" resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
         <include refid="commonSelectSQL"/>
         <where>
@@ -20,6 +27,24 @@
             </if>
         </where>
     </select>
+
+    <select id="queryPaginationByXml"
+            resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
+        <include refid="commonSelectSQL"/>
+        <where>
+            <if test="createdTimeStart != null">
+                datachange_createdtime >= #{createdTimeStart}
+            </if>
+            <if test="createdTimeEnd != null">
+                AND datachange_createdtime &lt; #{createdTimeEnd}
+            </if>
+            <if test="key != null and key !=''">
+                AND `key` LIKE CONCAT('%',#{key},'%')
+            </if>
+        </where>
+        ORDER BY datachange_createdtime DESC
+    </select>
+
     <select id="list" resultType="com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig">
         <include refid="commonSelectSQL"/>
         ORDER BY `key`

@@ -79,6 +79,15 @@ public interface ServerConfigMapper {
     List<ServerConfig> queryByXml(String key, LocalDate createdTimeStart, LocalDate createdTimeEnd);
 
     /**
+     * 按mybatis xml配置映射方式分页查询服务器配置
+     * @param key ：配置key
+     * @param createdTimeStart ：数据变动建立时间开始
+     * @param createdTimeEnd ：数据变动建立时间结束
+     * @return ：分页服务器配置信息
+     */
+    List<ServerConfig> queryPaginationByXml(String key, LocalDate createdTimeStart, LocalDate createdTimeEnd);
+
+    /**
      * 按id删除服务器配置
      *
      * @param id ：id
@@ -87,8 +96,10 @@ public interface ServerConfigMapper {
     @Delete("DELETE FROM ServerConfig WHERE id=#{id}")
     Integer DeleteById(Integer id);
 
+    /**
+     * 添加服务器配置
+     * @param serverConfig ：要添加的服务器配置
+     */
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into ServerConfig(`Key`,Cluster,Value,Comment,IsDeleted,DeletedAt,DataChange_CreatedBy,DataChange_CreatedTime,DataChange_LastModifiedBy,DataChange_LastTime) " +
-            "values(#{key},#{cluster},#{value},#{comment},#{isDeleted},#{deletedAt},#{dataChangeCreatedBy},#{dataChangeCreatedTime},#{dataChangeLastModifiedBy},#{dataChangeLastTime})")
     void Insert(ServerConfig serverConfig);
 }

@@ -53,7 +53,7 @@ public class RequestController {
      * @return ： 结果
      */
     @RequestMapping("/simpleParamByRequestParam")
-    public String simpleParamByRequestParam(@RequestParam(name = "name", required = true) String userName, int age) {
+    public String simpleParamByRequestParam(@RequestParam(name = "name", required = true, defaultValue = "admin") String userName, int age) {
         System.out.printf("userName:%s,age:%s%n", userName, age);
         return "ok";
     }
