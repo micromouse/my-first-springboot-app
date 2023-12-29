@@ -2,6 +2,7 @@ package com.studies.myfirstspringbootapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
@@ -9,6 +10,7 @@ import redis.clients.jedis.Jedis;
 /**
  * 应用入口
  */
+@ServletComponentScan
 @SpringBootApplication
 public class WebApplication {
     /**
