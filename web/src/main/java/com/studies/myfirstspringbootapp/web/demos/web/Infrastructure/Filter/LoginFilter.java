@@ -12,8 +12,6 @@ import java.io.IOException;
  * 登录过滤器
  */
 @Slf4j
-@Order(1)
-@WebFilter(urlPatterns = "/*")
 public class LoginFilter implements Filter {
     /**
      * 执行筛选

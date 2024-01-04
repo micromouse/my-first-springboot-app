@@ -13,8 +13,6 @@ import java.io.IOException;
  * 授权验证筛选器
  */
 @Slf4j
-@Order(2)
-@WebFilter(urlPatterns = "/*")
 public class AuthorizationFilter implements Filter {
     /**
      * 执行筛选
