@@ -18,15 +18,13 @@ package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 
 import com.studies.myfirstspringbootapp.web.demos.web.models.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
-@Controller
+@RestController
+@RequestMapping("/basic")
 public class BasicController {
 
     // http://127.0.0.1:8080/hello?name=lisi
