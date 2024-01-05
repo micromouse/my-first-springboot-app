@@ -25,6 +25,8 @@ public class FilterConfiguration {
 
     /**
      * AuthorizationFilter筛选器注册Bean
+     * 用AuthorizationInterceptor取代AuthorizationFilter
+     * 若要使用AuthorizationFilter添加@Bean注解
      *
      * @return ：AuthorizationFilter筛选器注册Bean
      */
