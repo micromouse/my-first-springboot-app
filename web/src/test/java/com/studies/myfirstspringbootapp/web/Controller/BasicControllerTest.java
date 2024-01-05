@@ -40,7 +40,7 @@ public class BasicControllerTest {
 
         //认证头
         HttpEntity<?> entity = new HttpEntity<>(new HttpHeaders() {{
-            set("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQzNjMyNTIsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.2VVIbjij-P43vp7aAnnhKuk892WUd8FI-hNNhdntS_U");
+            set("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0MjU1MzEsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.JNuOKl7C9JfiL5Vl_1kIMt4a1cnNmffNyt2GVZNtAt8");
         }});
 
         //请求

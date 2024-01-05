@@ -1,38 +1,35 @@
-package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter;
+package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Interceptor;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.studies.myfirstspringbootapp.common.JwtUtils;
 import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Optional;
 
 /**
- * 授权验证筛选器（拦截Servlet请求和响应，可以在请求到达Servlet之前进行处理，也可以在响应返回到客户端之前进行处理。）
+ * 授权拦截器(拦截Spring MVC中Controller的处理过程，包括Controller方法的调用前后等。)
  */
 @Slf4j
-public class AuthorizationFilter implements Filter {
+@Component
+public class AuthorizationInterceptor implements HandlerInterceptor {
     /**
-     * 执行筛选
+     * 资源请求前预处理
      *
-     * @param servletRequest  ：请求
-     * @param servletResponse ：响应
-     * @param filterChain     ：筛选链路
-     * @throws IOException      ：输入/输出异常
-     * @throws ServletException ：Servlet异常
+     * @param request  ：请求
+     * @param response ：响应
+     * @param handler  ：处理器
+     * @return ：处理结果(true:继续资源请求处理，false：直接返回结果)
+     * @throws Exception ：异常
      */
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        log.info("过滤器[AuthorizationFilter]正在拦截请求:{}", request.getRequestURL());
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info("拦截器[AuthorizationInterceptor]正在拦截请求:{}", request.getRequestURL());
 
         //请求url需要验证token
         if (!this.shouldCheckToekn(request)) {
@@ -47,14 +44,14 @@ public class AuthorizationFilter implements Filter {
                 //验证失败
                 log.error("当前请求token[{}]验证失败", token);
                 response.getWriter().write(JSONObject.toJSONString(Result.error("not login")));
-                return;
+                return false;
             }
 
             log.info("当前请求是合法请求，请求用户为：[{}]", claims);
         }
 
         //请求不需要验证token或token合法
-        filterChain.doFilter(servletRequest, servletResponse);
+        return true;
     }
 
     /**

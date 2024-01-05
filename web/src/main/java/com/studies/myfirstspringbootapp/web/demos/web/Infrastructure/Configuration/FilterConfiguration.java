@@ -1,5 +1,7 @@
-package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter;
+package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Configuration;
 
+import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter.AuthorizationFilter;
+import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter.LoginFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +28,6 @@ public class FilterConfiguration {
      *
      * @return ：AuthorizationFilter筛选器注册Bean
      */
-    @Bean
     public FilterRegistrationBean<AuthorizationFilter> authorizationFilterFilterRegistrationBean() {
         return this.filterRegistrationBean(AuthorizationFilter.class, "/*", 2);
     }
