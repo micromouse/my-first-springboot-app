@@ -36,10 +36,12 @@ public class BasicControllerTest {
     @Test
     public void get_hello_success() {
         String url = String.format("http://localhost:%s/basic/hello?name=world", port);
+        ParameterizedTypeReference<Result<String>> result = new ParameterizedTypeReference<Result<String>>() {};
         HttpEntity<?> entity = this.getHttpEntity();
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        Assertions.assertEquals("Hello world", response.getBody());
+        ResponseEntity<Result<String>> response = restTemplate.exchange(url, HttpMethod.GET, entity, result);
+        Assertions.assertNotNull(response.getBody());
+        Assertions.assertEquals("Hello world", response.getBody().getData());
     }
 
     /**
@@ -50,26 +52,10 @@ public class BasicControllerTest {
         String url = String.format("http://localhost:%s/basic/hello?name=guest", port);
         HttpEntity<?> entity = this.getHttpEntity();
 
-        ResponseEntity<Result<String>> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                entity,
-                new ParameterizedTypeReference<Result<String>>() {}
-        );
+        ResponseEntity<ResultOfString> response = restTemplate.exchange(url, HttpMethod.GET, entity, ResultOfString.class);
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
         Assertions.assertEquals(500, response.getBody().getCode());
-    }
-
-    /**
-     * 获得参数化类型引用
-     *
-     * @param <T> ：参数类型
-     * @return ：参数类型T引用
-     */
-    private <T> ParameterizedTypeReference<T> getParameterizedTypeReference() {
-        return new ParameterizedTypeReference<T>() {
-        };
     }
 
     /**
@@ -79,8 +65,14 @@ public class BasicControllerTest {
      */
     private HttpEntity<?> getHttpEntity() {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0Mjk4NzMsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.VuNci5S2XdJmvJ2qWvJWl2oBSzXbOCfIxD-Z8pz_w6k");
+        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0MzgzNDIsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.3LO5_edq7Yx7Vv3ZXZZCeNZd_A6FA04TinYQXcCzrNg");
 
         return new HttpEntity<>(httpHeaders);
+    }
+
+    /**
+     * 数据类型为String的Result<T>类型
+     */
+    static class ResultOfString extends Result<String> {
     }
 }
