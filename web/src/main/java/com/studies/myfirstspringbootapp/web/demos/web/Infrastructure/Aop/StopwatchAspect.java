@@ -23,10 +23,12 @@ public class StopwatchAspect {
     @Around("execution(* com.studies.myfirstspringbootapp.web.demos.web.controllers.*.*(..))")
     public Object StopwatchByController(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
-        Object _object = joinPoint.proceed();
-        long end = System.currentTimeMillis();
+        try {
+            return joinPoint.proceed();
+        } finally {
+            long end = System.currentTimeMillis();
+            log.info("当前请求[{}]耗时:{}ms", joinPoint.getSignature(), end - start);
+        }
 
-        log.info("当前请求[{}]耗时:{}ms", joinPoint.getSignature(), end - start);
-        return _object;
     }
 }
