@@ -30,10 +30,11 @@ public class BasicController {
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
     @ResponseBody
-    public Result<String> hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
+    public Result<String> hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) throws InterruptedException {
         if (name.equals("guest")) {
             throw new IllegalArgumentException("用户名不能为guest");
         }
+        Thread.sleep(2000);
         return Result.success("Hello " + name);
     }
 
