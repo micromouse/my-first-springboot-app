@@ -36,10 +36,10 @@ public class BasicControllerTest {
     @Test
     public void get_hello_success() {
         String url = String.format("http://localhost:%s/basic/hello?name=world", port);
-        ParameterizedTypeReference<Result<String>> result = new ParameterizedTypeReference<Result<String>>() {};
+        ParameterizedTypeReference<Result<String>> resultType = new ParameterizedTypeReference<Result<String>>() {};
         HttpEntity<?> entity = this.getHttpEntity();
 
-        ResponseEntity<Result<String>> response = restTemplate.exchange(url, HttpMethod.GET, entity, result);
+        ResponseEntity<Result<String>> response = restTemplate.exchange(url, HttpMethod.GET, entity, resultType);
         Assertions.assertNotNull(response.getBody());
         Assertions.assertEquals("Hello world", response.getBody().getData());
     }
