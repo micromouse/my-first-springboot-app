@@ -18,7 +18,6 @@ package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 
 import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import com.studies.myfirstspringbootapp.web.demos.web.models.User;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
