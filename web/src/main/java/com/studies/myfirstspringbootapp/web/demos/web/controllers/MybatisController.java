@@ -6,6 +6,8 @@ import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
 import com.studies.myfirstspringbootapp.web.demos.web.service.ServerConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -73,10 +75,13 @@ public class MybatisController {
 
     /**
      * 按id删除服务器配置
+     * rollbackFor = Exception.class : 所有异常都回滚
+     * propagation = Propagation.REQUIRED ： 没有事务将开启新的事物，存在事务则加入
      *
      * @param id ：id
      * @return ：结果
      */
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     @DeleteMapping(value = "/{id}")
     public Result<ServerConfig> deleteById(@PathVariable Integer id) {
         Integer count = serverConfigService.deleteById(id);
