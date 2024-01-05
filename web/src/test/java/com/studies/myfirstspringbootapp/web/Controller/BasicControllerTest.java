@@ -65,7 +65,7 @@ public class BasicControllerTest {
      */
     private HttpEntity<?> getHttpEntity() {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0MzgzNDIsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.3LO5_edq7Yx7Vv3ZXZZCeNZd_A6FA04TinYQXcCzrNg");
+        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0NDM1NDQsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.3cfGG2h_7IWJZC61TkrVKArxcseQ8eNPladh9nMGreY");
 
         return new HttpEntity<>(httpHeaders);
     }
