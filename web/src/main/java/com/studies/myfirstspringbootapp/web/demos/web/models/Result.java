@@ -1,6 +1,7 @@
 package com.studies.myfirstspringbootapp.web.demos.web.models;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 /**
  * 结果
@@ -50,7 +51,7 @@ public class Result<TData> {
      * @return : 成功结果
      */
     public static <TData> Result<TData> success(TData data) {
-        return new Result<>(1, "success", data);
+        return new Result<>(HttpStatus.OK.value(), "success", data);
     }
 
     /**
@@ -61,6 +62,18 @@ public class Result<TData> {
      * @return : 错误结果
      */
     public static <TData> Result<TData> error(String message) {
-        return new Result<>(0, message, null);
+        return error(HttpStatus.BAD_REQUEST, message);
+    }
+
+    /**
+     * 获得错误结果
+     *
+     * @param httpStatus : Http错误码
+     * @param message : 错误消息
+     * @param <TData> : 结果数据类型
+     * @return : 错误结果
+     */
+    public static <TData> Result<TData> error(HttpStatus httpStatus, String message) {
+        return new Result<>(httpStatus.value(), message, null);
     }
 }

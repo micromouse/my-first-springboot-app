@@ -1,15 +1,14 @@
 package com.studies.myfirstspringbootapp.web.Controller;
 
+import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 /**
  * BasicController控制器测试
@@ -37,14 +36,51 @@ public class BasicControllerTest {
     @Test
     public void get_hello_success() {
         String url = String.format("http://localhost:%s/basic/hello?name=world", port);
+        HttpEntity<?> entity = this.getHttpEntity();
 
-        //认证头
-        HttpEntity<?> entity = new HttpEntity<>(new HttpHeaders() {{
-            set("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0MjU1MzEsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.JNuOKl7C9JfiL5Vl_1kIMt4a1cnNmffNyt2GVZNtAt8");
-        }});
-
-        //请求
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         Assertions.assertEquals("Hello world", response.getBody());
+    }
+
+    /**
+     * get请求BasicController.hello时name=guest发生未知异常
+     */
+    @Test
+    public void get_hello_error_when_name_is_guest() {
+        String url = String.format("http://localhost:%s/basic/hello?name=guest", port);
+        HttpEntity<?> entity = this.getHttpEntity();
+
+        ResponseEntity<Result<String>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                new ParameterizedTypeReference<Result<String>>() {}
+        );
+        Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        Assertions.assertEquals(500, response.getBody().getCode());
+    }
+
+    /**
+     * 获得参数化类型引用
+     *
+     * @param <T> ：参数类型
+     * @return ：参数类型T引用
+     */
+    private <T> ParameterizedTypeReference<T> getParameterizedTypeReference() {
+        return new ParameterizedTypeReference<T>() {
+        };
+    }
+
+    /**
+     * 获得请求认证头
+     *
+     * @return ：请求认证头
+     */
+    private HttpEntity<?> getHttpEntity() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0Mjk4NzMsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.VuNci5S2XdJmvJ2qWvJWl2oBSzXbOCfIxD-Z8pz_w6k");
+
+        return new HttpEntity<>(httpHeaders);
     }
 }

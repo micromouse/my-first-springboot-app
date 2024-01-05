@@ -31,6 +31,9 @@ public class BasicController {
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
+        if (name.equals("guest")) {
+            throw new IllegalArgumentException("用户名不能为guest");
+        }
         return "Hello " + name;
     }
 
