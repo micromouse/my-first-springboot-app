@@ -72,9 +72,10 @@ public class AdviceAspect {
     }
 
     /**
-     * 方法执行异常后通知
+     * 方法执行异常后通知(controllers和dao下的异常执行将被通知)
      */
-    @AfterThrowing("execution(* com.studies.myfirstspringbootapp.web.demos.web.controllers.*.*(..))")
+    @AfterThrowing("execution(* com.studies.myfirstspringbootapp.web.demos.web.controllers.*.*(..)) ||" +
+            "execution(* com.studies.myfirstspringbootapp.web.demos.web.dao.*.*(..))")
     public void afterThrowing() {
         log.info("afterThrowing ...");
     }
