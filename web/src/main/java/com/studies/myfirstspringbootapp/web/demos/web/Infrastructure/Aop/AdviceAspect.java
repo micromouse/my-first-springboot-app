@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class AdviceAspect {
+    /**
+     * Aspect通用切入点
+     */
     @Pointcut("execution(* com.studies.myfirstspringbootapp.web.demos.web.controllers.*.*(..)) ")
     public void commonPointcut() {
     }

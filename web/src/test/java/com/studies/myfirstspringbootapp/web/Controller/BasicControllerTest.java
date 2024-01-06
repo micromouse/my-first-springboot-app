@@ -14,10 +14,7 @@ import org.springframework.http.*;
  * BasicController控制器测试
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BasicControllerTest {
-    private final String port;
-    private final TestRestTemplate restTemplate;
-
+public class BasicControllerTest extends SpringBootTestBase {
     /**
      * 初始化BasicController测试
      *
@@ -26,8 +23,7 @@ public class BasicControllerTest {
      */
     @Autowired
     public BasicControllerTest(Environment environment, TestRestTemplate restTemplate) {
-        this.port = environment.getProperty("local.server.port");
-        this.restTemplate = restTemplate;
+        super(environment, restTemplate);
     }
 
     /**
@@ -36,7 +32,8 @@ public class BasicControllerTest {
     @Test
     public void get_hello_success() {
         String url = String.format("http://localhost:%s/basic/hello?name=world", port);
-        ParameterizedTypeReference<Result<String>> resultType = new ParameterizedTypeReference<Result<String>>() {};
+        ParameterizedTypeReference<Result<String>> resultType = new ParameterizedTypeReference<Result<String>>() {
+        };
         HttpEntity<?> entity = this.getHttpEntity();
 
         ResponseEntity<Result<String>> response = restTemplate.exchange(url, HttpMethod.GET, entity, resultType);
@@ -56,23 +53,5 @@ public class BasicControllerTest {
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
         Assertions.assertEquals(500, response.getBody().getCode());
-    }
-
-    /**
-     * 获得请求认证头
-     *
-     * @return ：请求认证头
-     */
-    private HttpEntity<?> getHttpEntity() {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ0NTA5ODcsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.trbN9Bwi_QHEfEOTTjdILTUcGkVTOzXXU6kj6RTf15w");
-
-        return new HttpEntity<>(httpHeaders);
-    }
-
-    /**
-     * 数据类型为String的Result<T>类型
-     */
-    static class ResultOfString extends Result<String> {
     }
 }

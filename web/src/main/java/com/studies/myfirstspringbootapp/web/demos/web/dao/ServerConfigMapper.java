@@ -1,5 +1,6 @@
 package com.studies.myfirstspringbootapp.web.demos.web.dao;
 
+import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Aop.MyAnnotationPointcut;
 import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
 import org.apache.ibatis.annotations.*;
 
@@ -28,6 +29,7 @@ public interface ServerConfigMapper {
      *
      * @return ：服务器配置信息集合
      */
+    @MyAnnotationPointcut
     List<ServerConfig> list();
 
     /**
