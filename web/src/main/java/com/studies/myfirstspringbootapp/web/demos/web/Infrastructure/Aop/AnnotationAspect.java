@@ -26,7 +26,7 @@ public class AnnotationAspect {
      */
     @Before("common()")
     public void before(JoinPoint joinPoint) {
-        String className = joinPoint.getTarget().getClass().getName();
+        String className = joinPoint.getSignature().getDeclaringTypeName();;
         String methodName = joinPoint.getSignature().getName();
         log.info("注解[MyAnnotation] 方法[{}.{}] before ...", className, methodName);
     }
