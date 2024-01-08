@@ -2,7 +2,10 @@ package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Configurat
 
 import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter.AuthorizationFilter;
 import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Filter.LoginFilter;
+import com.studies.myfirstspringbootapp.web.demos.web.service.ResponseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,15 +14,21 @@ import javax.servlet.Filter;
 /**
  * 筛选器配置
  */
+@Slf4j
 @Configuration
 public class FilterConfiguration {
     /**
      * LoginFilter筛选器注册Bean
+     * ----------------------------
+     * 注册LoginFilter FilterRegistrationBean时自动加载ResponseService依赖，
+     * 这对于注册第三方Bean需要某个依赖时很有用
      *
+     * @param responseService : 响应服务依赖
      * @return : LoginFilter筛选器注册Bean
      */
     @Bean
-    public FilterRegistrationBean<LoginFilter> loginFilterFilterRegistrationBean() {
+    public FilterRegistrationBean<LoginFilter> loginFilterFilterRegistrationBean(ResponseService responseService) {
+        log.info("注册LoginFilter FilterRegistrationBean时自动加载ResponseService依赖：{}", responseService);
         return this.filterRegistrationBean(LoginFilter.class, "/*", 1);
     }
 
@@ -30,7 +39,9 @@ public class FilterConfiguration {
      *
      * @return ：AuthorizationFilter筛选器注册Bean
      */
-    public FilterRegistrationBean<AuthorizationFilter> authorizationFilterFilterRegistrationBean() {
+    @Bean
+    public FilterRegistrationBean<AuthorizationFilter> authorizationFilterFilterRegistrationBean(ApplicationContext applicationContext) {
+        log.info("从ApplicatinContext[{}]中获得ResponseService依赖[{}]", applicationContext, applicationContext.getBean(ResponseService.class));
         return this.filterRegistrationBean(AuthorizationFilter.class, "/*", 2);
     }
 
@@ -55,9 +66,10 @@ public class FilterConfiguration {
 
     /**
      * 建立类型T实例
+     *
      * @param tClass ：Class<T>
+     * @param <T>    ：要创建实例的类型
      * @return : 类型T实例
-     * @param <T> ：要创建实例的类型
      */
     private <T> T createInstance(Class<T> tClass) {
         try {

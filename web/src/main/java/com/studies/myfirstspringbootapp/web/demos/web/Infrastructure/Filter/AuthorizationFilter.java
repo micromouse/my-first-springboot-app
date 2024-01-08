@@ -33,27 +33,6 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         log.info("过滤器[AuthorizationFilter]正在拦截请求:{}", request.getRequestURL());
-
-        //请求url需要验证token
-        if (!this.shouldCheckToekn(request)) {
-            String token = request.getHeader("Authorization");
-            if (token.startsWith("Bearer ")) {
-                token = token.substring("Bearer ".length());
-            }
-
-            //解析jwt token
-            Optional<Claims> claims = JwtUtils.tryParse(token);
-            if (!claims.isPresent()) {
-                //验证失败
-                log.error("当前请求token[{}]验证失败", token);
-                response.getWriter().write(JSONObject.toJSONString(Result.error("not login")));
-                return;
-            }
-
-            log.info("当前请求是合法请求，请求用户为：[{}]", claims);
-        }
-
-        //请求不需要验证token或token合法
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
