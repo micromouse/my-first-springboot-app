@@ -38,7 +38,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             String token = request.getHeader("Authorization");
             if (!StringUtils.hasLength(token)) {
                 log.info("当前请求[{}]需要token，但请求没有提供", request.getRequestURI());
-                response.getWriter().write(JSONObject.toJSONString(Result.error(HttpStatus.UNAUTHORIZED, "not login")));
+                response.getWriter().write(JSONObject.toJSONString(Result.error(HttpStatus.UNAUTHORIZED, "not provide token")));
                 return false;
             } else if (token.startsWith("Bearer ")) {
                 token = token.substring("Bearer ".length());
