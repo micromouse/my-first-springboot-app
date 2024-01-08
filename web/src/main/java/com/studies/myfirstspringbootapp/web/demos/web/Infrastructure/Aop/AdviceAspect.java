@@ -1,6 +1,8 @@
 package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Aop;
 
+import com.studies.myfirstspringbootapp.web.demos.web.service.ResponseService;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
@@ -81,5 +83,16 @@ public class AdviceAspect {
             "execution(* com.studies.myfirstspringbootapp.web.demos.web.dao.*.*(..))")
     public void afterThrowing() {
         log.info("afterThrowing ...");
+    }
+
+    /**
+     * 执行[com.studies.myfirstspringbootapp.web.demos.web.service]下所有接口方法前通知
+     * @param joinPoint ：连接点
+     */
+    @Before("execution(* com..service.*.*(..))")
+    public void interfaceBefore(JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        log.info("request [{}/{}] before ...", className, methodName);
     }
 }

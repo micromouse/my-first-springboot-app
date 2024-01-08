@@ -5,7 +5,9 @@ import com.studies.myfirstspringbootapp.common.JwtUtils;
 import com.studies.myfirstspringbootapp.web.demos.web.models.Result;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         //请求url需要验证token
         if (!this.shouldCheckToekn(request)) {
             String token = request.getHeader("Authorization");
-            if (token.startsWith("Bearer ")) {
+            if (!StringUtils.hasLength(token)) {
+                log.info("当前请求[{}]需要token，但请求没有提供", request.getRequestURI());
+                response.getWriter().write(JSONObject.toJSONString(Result.error(HttpStatus.UNAUTHORIZED, "not login")));
+                return false;
+            } else if (token.startsWith("Bearer ")) {
                 token = token.substring("Bearer ".length());
             }
 
