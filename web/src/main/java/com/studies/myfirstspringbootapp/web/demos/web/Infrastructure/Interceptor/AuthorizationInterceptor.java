@@ -49,7 +49,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             if (!claims.isPresent()) {
                 //验证失败
                 log.error("当前请求token[{}]验证失败", token);
-                response.getWriter().write(JSONObject.toJSONString(Result.error("not login")));
+                response.getWriter().write(JSONObject.toJSONString(Result.error(HttpStatus.UNAUTHORIZED, "not login")));
                 return false;
             }
 
