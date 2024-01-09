@@ -32,7 +32,7 @@ public class SpringBootTestBase {
      */
     protected HttpEntity<?> getHttpEntity() {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ1Mzc2NzcsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.52X7kLp9IQdD2WpX3CombRgdfN5reISryMZALcJRkxE");
+        httpHeaders.add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDQ3OTM1MDgsInJvbGUiOiJtYW5hZ2VyIiwibmFtZSI6ImFkbWluIn0.1U4J2apUu1Q4nzwlCGGRP38MP88ky4rni5KNXNoE0YM");
 
         return new HttpEntity<>(httpHeaders);
     }

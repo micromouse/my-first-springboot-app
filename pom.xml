@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.studies</groupId>
-    <artifactId>my-first-springboot-app</artifactId>
+    <artifactId>myfirstspringbootapp</artifactId>
     <version>1.0.0</version>
     <name>my-first-springboot-app</name>
     <description>my-first-springboot-app</description>

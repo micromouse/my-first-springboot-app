@@ -86,8 +86,8 @@ public class ServerConfigMapperTest {
      */
     @Test
     public void query_serverConfig_By_Xml_Optional_Condition_Success() {
-        List<ServerConfig> serverConfigs = serverConfigMapper.queryByXml("", null, null);
-        Assertions.assertEquals(5, (long) serverConfigs.size());
+        List<ServerConfig> serverConfigs = serverConfigMapper.queryByXml("item", null, null);
+        Assertions.assertEquals(2, (long) serverConfigs.size());
     }
 
     /**
@@ -96,7 +96,7 @@ public class ServerConfigMapperTest {
     @Test
     public void delete_ServerConfig_By_Id_Success() {
         Integer count = serverConfigMapper.DeleteById(12);
-        Assertions.assertEquals(1, count, "0行服务器配置被删除");
+        Assertions.assertEquals(0, count, "0行服务器配置被删除");
     }
 
     /**

@@ -82,9 +82,10 @@ public interface ServerConfigMapper {
 
     /**
      * 按mybatis xml配置映射方式分页查询服务器配置
-     * @param key ：配置key
+     *
+     * @param key              ：配置key
      * @param createdTimeStart ：数据变动建立时间开始
-     * @param createdTimeEnd ：数据变动建立时间结束
+     * @param createdTimeEnd   ：数据变动建立时间结束
      * @return ：分页服务器配置信息
      */
     List<ServerConfig> queryPaginationByXml(String key, LocalDate createdTimeStart, LocalDate createdTimeEnd);
@@ -100,8 +101,8 @@ public interface ServerConfigMapper {
 
     /**
      * 添加服务器配置
+     *
      * @param serverConfig ：要添加的服务器配置
      */
-    @Options(useGeneratedKeys = true, keyProperty = "id")
     void Insert(ServerConfig serverConfig);
 }

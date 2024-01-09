@@ -6,7 +6,7 @@
         SELECT *
         FROM serverconfig
     </sql>
-    <insert id="Insert">
+    <insert id="Insert" keyProperty="id" useGeneratedKeys="true">
         insert into ServerConfig(`Key`, Cluster, Value, Comment, IsDeleted, DeletedAt, DataChange_CreatedBy,
                                  DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime)
         values (#{key}, #{cluster}, #{value}, #{comment}, #{isDeleted}, #{deletedAt}, #{dataChangeCreatedBy},

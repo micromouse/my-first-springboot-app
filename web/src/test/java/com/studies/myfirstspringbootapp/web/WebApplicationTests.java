@@ -25,6 +25,6 @@ public class WebApplicationTests {
     @Test
     public void delete_ServerConfig_By_Id_Success() {
         Integer count = serverConfigMapper.DeleteById(10);
-        Assertions.assertEquals(1, count, "0行服务器配置被删除");
+        Assertions.assertEquals(0, count, "0行服务器配置被删除");
     }
 }

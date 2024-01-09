@@ -11,8 +11,9 @@
 
     <parent>
         <groupId>com.studies</groupId>
-        <artifactId>my-first-springboot-app</artifactId>
+        <artifactId>myfirstspringbootapp</artifactId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <dependencies>
@@ -27,6 +28,7 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
