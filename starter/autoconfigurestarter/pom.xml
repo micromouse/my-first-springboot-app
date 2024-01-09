@@ -4,10 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.studies.myfirstspringbootapp</groupId>
-    <artifactId>autoconfigurestarter</artifactId>
+    <artifactId>autoconfigure-spring-boot-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>autoconfigurestarter</name>
-    <description>autoconfigurestarter</description>
 
     <parent>
         <groupId>com.studies</groupId>

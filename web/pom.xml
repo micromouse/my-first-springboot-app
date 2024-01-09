@@ -64,7 +64,7 @@
 
         <dependency>
             <groupId>com.studies.myfirstspringbootapp</groupId>
-            <artifactId>autoconfigurestarter</artifactId>
+            <artifactId>autoconfigure-spring-boot-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
