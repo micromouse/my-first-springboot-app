@@ -16,6 +16,7 @@
         <version>2.7.18</version>
     </parent>
 
+    <!--聚合其他模块,用于快速构建项目-->
     <modules>
         <module>web</module>
         <module>common</module>
