@@ -22,6 +22,7 @@
         <module>common</module>
         <module>starter/autoconfigure</module>
         <module>starter/autoconfigurestarter</module>
+        <module>eurekaserver</module>
     </modules>
 
     <dependencies>
@@ -50,7 +51,9 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.3</version>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -83,6 +86,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.7.18</spring-boot.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
