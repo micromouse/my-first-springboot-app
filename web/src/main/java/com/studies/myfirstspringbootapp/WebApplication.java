@@ -1,5 +1,6 @@
 package com.studies.myfirstspringbootapp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -10,24 +11,26 @@ import redis.clients.jedis.Jedis;
 /**
  * 应用入口
  */
+@Slf4j
 @ServletComponentScan
 @SpringBootApplication
 public class WebApplication {
     /**
      * main
+     *
      * @param args ：参数
      */
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(WebApplication.class, args);
 
         Jedis jedis = context.getBean(Jedis.class);
-        System.out.println(jedis);
+        log.info("current jedis is : {}", jedis);
 
         String value = jedis.getSet("hello", "world");
         if (value == null) {
             value = "world";
         }
-        System.out.printf("key hello value is : %s%n", value);
+        log.info("key hello value is : {}", value);
     }
 
 }

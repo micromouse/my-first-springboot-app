@@ -1,6 +1,5 @@
 server:
   port: 8081
-
 spring:
   redis:
     host: localhost
@@ -23,5 +22,4 @@ management:
 # mybaits配置
 mybatis:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
