@@ -23,6 +23,7 @@
         <module>starter/autoconfigure</module>
         <module>starter/autoconfigurestarter</module>
         <module>eurekaserver</module>
+        <module>ordering.api</module>
     </modules>
 
     <dependencies>
