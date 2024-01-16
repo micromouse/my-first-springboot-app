@@ -4,6 +4,7 @@ import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -29,16 +30,18 @@ public class OrderingController {
 
     /**
      * 从订单服务获得所有服务器配置信息
+     *
      * @return ： 服务器配置信息集合
      */
-    @RequestMapping("/all")
-    public List<ServerConfig> list() {
-        String url = "http://ordering.api/serverConfig/all";
+    @RequestMapping("/all/{name}")
+    public List<ServerConfig> list(@PathVariable String name) {
+        String url = "http://orderingapi/serverConfig/all/" + name;
         ResponseEntity<List<ServerConfig>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<ServerConfig>>() {});
+                new ParameterizedTypeReference<List<ServerConfig>>() {
+                });
         return response.getBody();
     }
 }

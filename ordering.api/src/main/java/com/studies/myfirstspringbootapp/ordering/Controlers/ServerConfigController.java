@@ -2,6 +2,8 @@ package com.studies.myfirstspringbootapp.ordering.Controlers;
 
 import com.studies.myfirstspringbootapp.ordering.Daos.ServerConfigMapper;
 import com.studies.myfirstspringbootapp.ordering.Models.ServerConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,7 @@ import java.util.List;
 /**
  * 服务器配置控制器
  */
+@Slf4j
 @RestController
 @RequestMapping("/serverConfig")
 public class ServerConfigController {
@@ -40,10 +43,12 @@ public class ServerConfigController {
     /**
      * 获得所有服务器配置信息
      *
+     * @param name : 名称
      * @return ：服务器配置信息集合
      */
-    @RequestMapping("/all")
-    public List<ServerConfig> list() {
+    @RequestMapping("/all/{name}")
+    public List<ServerConfig> list(@PathVariable String name) {
+        log.info("当前请求[/serverConfig/all]名称:{}", name);
         return serverConfigMapper.list();
     }
 }

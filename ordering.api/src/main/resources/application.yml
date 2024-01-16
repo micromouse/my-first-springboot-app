@@ -2,7 +2,7 @@ server:
   port: 8083
 spring:
   application:
-    name: ordering.api
+    name: orderingapi
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ApolloConfigDB
