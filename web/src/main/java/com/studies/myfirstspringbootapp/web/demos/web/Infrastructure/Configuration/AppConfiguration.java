@@ -1,8 +1,8 @@
 package com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Configuration;
-
+/*
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+*/
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,9 +30,9 @@ public class AppConfiguration {
      *
      * @return ：全局使用随机负载均衡器
      */
-    @Bean
-    @ConditionalOnProperty(name = "orderingapi.ribbon.NFLoadBalancerRuleClassName", havingValue = "com.netflix.loadbalancer.RandomRule1")
+    /*
     public IRule randomRule() {
         return new RandomRule();
     }
+    */
 }

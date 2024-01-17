@@ -17,16 +17,6 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:8080/eureka
 
-orderingapi:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-
-ribbon:
-  eager-load:
-    enabled: true
-    clients:
-      - orderingapi
-
 management:
   endpoint:
     health:
