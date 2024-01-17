@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * 不使用[public,protected,private]访问修饰符，默认维护包访问权限，包内可访问
  */
 @Configuration
-class AppConfiguration {
+public class AppConfiguration {
     /**
      * RestTemplate Bean
      *
