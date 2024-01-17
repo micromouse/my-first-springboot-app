@@ -9,11 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * WebMvc配置器
  */
 @Configuration
-public class WebMvcConfiguration implements WebMvcConfigurer {
+class WebMvcConfiguration implements WebMvcConfigurer {
     private final AuthorizationInterceptor authorizationInterceptor;
 
     /**
      * 初始化WebMvc配置器
+     *
      * @param authorizationInterceptor ：授权拦截器
      */
     public WebMvcConfiguration(AuthorizationInterceptor authorizationInterceptor) {

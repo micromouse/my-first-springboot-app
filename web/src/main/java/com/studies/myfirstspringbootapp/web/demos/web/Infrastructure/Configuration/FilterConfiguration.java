@@ -16,7 +16,7 @@ import javax.servlet.Filter;
  */
 @Slf4j
 @Configuration
-public class FilterConfiguration {
+class FilterConfiguration {
     /**
      * LoginFilter筛选器注册Bean
      * ----------------------------
