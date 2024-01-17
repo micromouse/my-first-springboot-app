@@ -11,10 +11,7 @@ spring:
     password: 11111111
   application:
     name: web
-  cloud:
-    loadbalancer:
-      ribbon:
-        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
 eureka:
   client:
     service-url:
