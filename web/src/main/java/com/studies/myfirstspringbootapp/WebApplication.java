@@ -1,11 +1,9 @@
 package com.studies.myfirstspringbootapp;
 
-import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Configuration.AppConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import redis.clients.jedis.Jedis;
 
@@ -32,6 +30,7 @@ public class WebApplication {
             value = "world";
         }
         log.info("key hello value is : {}", value);
+
     }
 
 }
