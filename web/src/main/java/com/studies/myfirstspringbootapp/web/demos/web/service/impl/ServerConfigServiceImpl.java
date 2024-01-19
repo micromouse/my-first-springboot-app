@@ -20,6 +20,7 @@ import java.util.Map;
 @Service
 @Slf4j
 public class ServerConfigServiceImpl implements ServerConfigService {
+    //空白final，使用前必须被初始化(这里是在构造函数中初始化，也可以定义时就赋值)
     private final ServerConfigMapper serverConfigMapper;
 
     /**
@@ -32,13 +33,13 @@ public class ServerConfigServiceImpl implements ServerConfigService {
     }
 
     /**
-     * 按配置key查找服务器配置信息
+     * 按配置key查找服务器配置信息(final方法，不能在派生类中被@override)
      *
-     * @param key ：配置key
+     * @param key ：配置key(final参数，方法体中不能被更改)
      * @return ：服务器配置信息
      */
     @Override
-    public ServerConfig findByKey(String key) {
+    public ServerConfig findByKey(final String key) {
         return serverConfigMapper.findByKey(key);
     }
 

@@ -12,10 +12,10 @@ import java.util.List;
 public interface ServerConfigService {
     /**
      * 按配置key查找服务器配置信息
-     * @param key ：配置key
+     * @param key ：配置key(final参数，方法体中不能被更改)
      * @return ：服务器配置信息
      */
-    ServerConfig findByKey(String key);
+    ServerConfig findByKey(final String key);
 
     /**
      * 获得所有服务器配置集合
