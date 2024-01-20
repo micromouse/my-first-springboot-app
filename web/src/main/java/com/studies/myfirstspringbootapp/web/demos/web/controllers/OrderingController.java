@@ -1,6 +1,9 @@
 package com.studies.myfirstspringbootapp.web.demos.web.controllers;
 
+import com.studies.myfirstspringbootapp.web.demos.web.Infrastructure.Configuration.OrderingBalancerConfiguration;
 import com.studies.myfirstspringbootapp.web.demos.web.models.ServerConfig;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+import org.springframework.cloud.loadbalancer.core.RandomLoadBalancer;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import java.util.List;
 /**
  * 订单控制器
  */
+@LoadBalancerClient(name = "orderingapi",configuration = {OrderingBalancerConfiguration.class})
 @RestController
 @RequestMapping("/ordering")
 public class OrderingController {

@@ -11,13 +11,6 @@ spring:
     password: 11111111
   application:
     name: web
-  cloud:
-    discovery:
-      enabled: true
-      service-id: orderingapi
-    loadbalancer:
-      retry:
-        loadbalancerClassName: org.springframework.cloud.loadbalancer.core.RandomLoadBalancer
 
 eureka:
   client:
