@@ -5,7 +5,7 @@ package com.studies.myfirstspringbootapp.web.classes;
  */
 public class DotThis {
     public String f() {
-        return "DotThis.f()";
+        return "DotThis.print()";
     }
 
     public Inner inner() {

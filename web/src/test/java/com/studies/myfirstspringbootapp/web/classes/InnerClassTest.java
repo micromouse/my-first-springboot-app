@@ -18,7 +18,7 @@ public class InnerClassTest {
         DotThis dotThis = new DotThis();
         DotThis.Inner inner = dotThis.inner();
         Assertions.assertEquals(dotThis, inner.outer());
-        Assertions.assertEquals("DotThis.f()", inner.outer().f());
+        Assertions.assertEquals("DotThis.print()", inner.outer().f());
     }
 
     /**
@@ -28,7 +28,7 @@ public class InnerClassTest {
     public void create_innerclass_instance_use_dotnew_success() {
         DotThis dotThis = new DotThis();
         DotThis.Inner inner = dotThis.new Inner();
-        Assertions.assertEquals("DotThis.f()", inner.outer().f());
+        Assertions.assertEquals("DotThis.print()", inner.outer().f());
 
         /*
          * 不能按想象的方式使用下列方法实例化一个内部类

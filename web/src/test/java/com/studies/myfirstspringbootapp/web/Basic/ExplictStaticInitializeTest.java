@@ -19,7 +19,7 @@ public class ExplictStaticInitializeTest {
           Cup(1)
           Cup(2)
           Cups()  -- 注释掉这一行代码[static Cups cups1 = new Cups();],将不会输出Cups()
-          f(99)
+          print(99)
          */
     }
 }
@@ -30,7 +30,7 @@ class Cup {
     }
 
     void f(int marker) {
-        System.out.printf("f(%s)%n", marker);
+        System.out.printf("print(%s)%n", marker);
     }
 }
 
