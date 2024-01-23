@@ -1,11 +1,7 @@
 package com.studies.myfirstspringbootapp.web.Basic;
 
-import org.apache.tomcat.util.bcel.Const;
-import org.aspectj.weaver.ast.Var;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.Console;
 
 /**
  * 数字转换测试
