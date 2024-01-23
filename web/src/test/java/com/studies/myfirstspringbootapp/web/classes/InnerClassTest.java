@@ -100,7 +100,7 @@ public class InnerClassTest {
     }
 
     /**
-     * 获得IHello实现
+     * 使用局部内部类获得IHello实现
      *
      * @return ：Ihello实现
      */
