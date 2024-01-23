@@ -34,6 +34,16 @@ public class ResponseController {
     }
 
     /**
+     * 默认错误
+     *
+     * @return ：错误结果
+     */
+    @RequestMapping("/defaultError")
+    public Result<Object> defaultError() {
+        return responseService.ErrorResult();
+    }
+
+    /**
      * hello响应
      *
      * @return : 响应结果
