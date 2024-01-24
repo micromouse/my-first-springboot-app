@@ -3,9 +3,8 @@ package com.studies.myfirstspringbootapp.web.Basic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 数组测试
@@ -33,4 +32,30 @@ public class ArrayTest {
         Assertions.assertEquals("23456", value.toString());
     }
 
+    /**
+     * 通过Arrays.asList初始化了List成功
+     */
+    @Test
+    public void initial_list_by_arrays_aslist_success() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        Assertions.assertEquals(2, list.get(1));
+
+        //修改元素
+        list.set(1, 20);
+        Assertions.assertEquals(20, list.get(1));
+
+        /*
+         * Runtime error： the underlying array cannot be resized.
+         * list.add(6);
+         */
+    }
+
+    /**
+     * 在Arrays.asList初始化的List中添加新项时抛出UnsupportedOperationException异常
+     */
+    @Test
+    public void throw_exception_when_add_item_in_arrays_aslist() {
+        List<Integer> list = Arrays.asList(1, 2);
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> list.add(3));
+    }
 }
