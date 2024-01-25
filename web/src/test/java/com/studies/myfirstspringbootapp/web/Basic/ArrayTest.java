@@ -52,6 +52,7 @@ public class ArrayTest {
 
     /**
      * 在Arrays.asList初始化的List中添加新项时抛出UnsupportedOperationException异常
+     * 底层实现是数组，没法调整大小
      */
     @Test
     public void throw_exception_when_add_item_in_arrays_aslist() {
