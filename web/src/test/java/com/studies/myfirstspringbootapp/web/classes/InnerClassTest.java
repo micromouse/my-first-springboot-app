@@ -33,7 +33,6 @@ public class InnerClassTest {
      */
     @Test
     public void create_innerclass_instance_use_dotnew_success() {
-        Collectors.joining(" ");
         DotThis dotThis = new DotThis();
         DotThis.Inner inner = dotThis.new Inner();
         Assertions.assertEquals("DotThis.print()", inner.outer().f());
