@@ -3,6 +3,13 @@ package com.studies.myfirstspringbootapp.web.classes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 /**
  * 内部类测试
  */
@@ -26,6 +33,7 @@ public class InnerClassTest {
      */
     @Test
     public void create_innerclass_instance_use_dotnew_success() {
+        Collectors.joining(" ");
         DotThis dotThis = new DotThis();
         DotThis.Inner inner = dotThis.new Inner();
         Assertions.assertEquals("DotThis.print()", inner.outer().f());
