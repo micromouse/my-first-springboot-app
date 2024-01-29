@@ -1,10 +1,7 @@
-package com.studies.myfirstspringbootapp.web.FunctionPrograming;
+package com.studies.myfirstspringbootapp.web.Basic.Function;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.function.BiConsumer;
-import java.util.function.IntToDoubleFunction;
 
 /**
  * 构造函数引用测试

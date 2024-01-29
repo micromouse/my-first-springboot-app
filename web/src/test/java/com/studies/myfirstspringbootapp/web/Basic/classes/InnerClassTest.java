@@ -1,14 +1,7 @@
-package com.studies.myfirstspringbootapp.web.classes;
+package com.studies.myfirstspringbootapp.web.Basic.classes;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * 内部类测试
@@ -41,7 +34,7 @@ public class InnerClassTest {
          * 不能按想象的方式使用下列方法实例化一个内部类
          * DotThis.Inner iner = new DotThis.Inner();
          * 编译器会报以下异常
-         * 'com.studies.myfirstspringbootapp.web.classes.DotThis' is not an enclosing class
+         * 'com.studies.myfirstspringbootapp.web.Basic.classes.DotThis' is not an enclosing class
          *
          * 在拥有外部类对象之前是不可能创建内部类对象的。这是因为内部类对象会暗暗
          * 地连接到建它的外部类对象上。但是，如果你创建的是嵌套类（静态内部类），

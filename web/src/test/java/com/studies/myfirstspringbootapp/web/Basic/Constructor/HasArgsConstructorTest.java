@@ -1,4 +1,4 @@
-package com.studies.myfirstspringbootapp.web.Constructor;
+package com.studies.myfirstspringbootapp.web.Basic.Constructor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -59,7 +59,7 @@ class ChineseGinkgo extends Ginkgo {
         /*
          * 如果注释掉super(name)
          * 因为Ginkgo没有无参构造函数，编译器将报下列错误
-         * There is no default constructor available in 'com.studies.myfirstspringbootapp.web.Constructor.Ginkgo'
+         * There is no default constructor available in 'com.studies.myfirstspringbootapp.web.Basic.Constructor.Ginkgo'
          */
         super(name);
         System.out.printf("ChineseGinkgo.Constructor(%s)%n", name);

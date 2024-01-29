@@ -1,4 +1,4 @@
-package com.studies.myfirstspringbootapp.web.classes;
+package com.studies.myfirstspringbootapp.web.Basic.classes;
 
 import org.junit.jupiter.api.Test;
 

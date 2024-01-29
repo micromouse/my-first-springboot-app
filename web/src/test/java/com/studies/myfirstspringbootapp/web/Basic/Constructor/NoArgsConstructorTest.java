@@ -1,4 +1,4 @@
-package com.studies.myfirstspringbootapp.web.Constructor;
+package com.studies.myfirstspringbootapp.web.Basic.Constructor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

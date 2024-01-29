@@ -1,4 +1,4 @@
-package com.studies.myfirstspringbootapp.web.FunctionPrograming;
+package com.studies.myfirstspringbootapp.web.Basic.Function;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
