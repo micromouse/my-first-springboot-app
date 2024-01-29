@@ -1,9 +1,7 @@
 package com.studies.myfirstspringbootapp.web.Basic.Stream;
 
-import org.aspectj.weaver.ast.Var;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -22,32 +20,41 @@ import java.util.stream.Stream;
  */
 public class GenerateStreamTest {
     /**
-     * 流限制分隔成功
+     * 生成一般流成功
      */
     @Test
-    public void stream_limit_and_joining_success() throws IOException {
-        WordsSupplier wordsSupplier = new WordsSupplier();
+    public void generate_normal_stream_success() throws IOException {
+        RandomWordsSupplier wordsSupplier = new RandomWordsSupplier();
         String values = Stream.generate(wordsSupplier)
                 .limit(10)
                 .collect(Collectors.joining(" "));
         System.out.printf("随机生成10个单词：%s%n", values);
         System.out.printf("所有单词: %s%n", wordsSupplier);
     }
+
+    /**
+     * 生成重复对象流成功
+     */
+    @Test
+    public void generate_duplicator_stream_success() {
+        Stream.generate(() -> "duplicator")
+                .limit(10)
+                .forEach(System.out::println);
+    }
 }
 
 /**
- * 单词Supplier
+ * 随机单词Supplier
  */
-class WordsSupplier implements Supplier<String> {
+class RandomWordsSupplier extends TextFileReader implements Supplier<String> {
     List<String> words = new ArrayList<>();
     Random random = new Random(47);
 
     /**
      * 初始化单词Supplier
      */
-    WordsSupplier() throws IOException {
-        URI fileURI = this.getFileURI();
-        List<String> lines = Files.readAllLines(Paths.get(fileURI));
+    RandomWordsSupplier() throws IOException {
+        List<String> lines = this.read("Cheese.dat");
 
         //略过第一行读取所有行，使用[空格,点号,问号,逗号]分隔单词
         for (String line : lines.subList(1, lines.size())) {
@@ -66,26 +73,6 @@ class WordsSupplier implements Supplier<String> {
     public String toString() {
         return words.stream()
                 .collect(Collectors.joining(" "));
-    }
-
-    /**
-     * 获得文件[Cheese.dat]URI
-     *
-     * @return : 文件[Cheese.dat]URI
-     * @throws IOException : 文件[Cheese.dat]未找到或URI错误
-     */
-    private URI getFileURI() throws IOException {
-        URL url = getClass().getClassLoader()
-                .getResource("Cheese.dat");
-        if (url == null) {
-            throw new IOException("文件[Cheese.dat]未找到");
-        }
-
-        try {
-            return url.toURI();
-        } catch (URISyntaxException e) {
-            throw new IOException("文件[Cheese.dat]未找到", e);
-        }
     }
 
 }

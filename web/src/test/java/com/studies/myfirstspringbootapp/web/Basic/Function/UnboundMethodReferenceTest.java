@@ -22,6 +22,9 @@ public class UnboundMethodReferenceTest {
         TransformX transformX = X::f;
         Assertions.assertEquals("X::f() admin 20", transformX.transform(x, "admin", 20));
         Assertions.assertEquals("X::f() admin 20", x.f("admin", 20));
+
+        MakeString makeString = X::h;
+        Assertions.assertEquals("X::h()", makeString.make());
     }
 }
 
@@ -32,6 +35,10 @@ class X {
 
     String f(String name, int age) {
         return String.format("X::f() %s %d", name, age);
+    }
+
+    static String h() {
+        return "X::h()";
     }
 }
 
