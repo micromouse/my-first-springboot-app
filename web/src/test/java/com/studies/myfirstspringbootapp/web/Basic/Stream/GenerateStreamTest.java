@@ -3,11 +3,6 @@ package com.studies.myfirstspringbootapp.web.Basic.Stream;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
