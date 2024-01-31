@@ -2,7 +2,6 @@ package com.studies.myfirstspringbootapp.web.Basic.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
