@@ -38,15 +38,3 @@ public class ErasedTypeTest {
         Assertions.assertEquals("[K, V]", Arrays.toString(map.getClass().getTypeParameters()));
     }
 }
-
-class Erased<T> {
-    public void f(Object arg) {
-        if (arg instanceof T) {
-
-        }
-
-        T var = new T();
-        T[] arrays1 = new T[10];
-        T[] arrays2 = (T[]) new Object[10];
-    }
-}
