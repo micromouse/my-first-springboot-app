@@ -44,11 +44,11 @@ class Mug {
 class Mugs {
     Mug mug1;
     Mug mug2;
+
     /*
     实例初始化子句没有静态成员初始化子句前面的static关键字
     无论执行哪个构造器，实例初始化子句都会先执行
-     */
-    {
+     */ {
         mug1 = new Mug(1);
         mug2 = new Mug(2);
         System.out.println("mug1 & mug2 initialized");
