@@ -39,9 +39,10 @@ public class WildcardCharacterTest {
      */
     @Test
     public void initial_extends_wildcards_collection_success() {
-        List<? extends Fruit> list = Arrays.asList(new Fruit(), new Apple());
+        Fruit fruit = new Fruit();
+        List<? extends Fruit> list = Arrays.asList(fruit, new Apple());
         Assertions.assertTrue(list.get(1) instanceof Apple);
-        Assertions.assertFalse(list.contains(new Fruit()));
+        Assertions.assertTrue(list.contains(fruit));
     }
 
     /**
