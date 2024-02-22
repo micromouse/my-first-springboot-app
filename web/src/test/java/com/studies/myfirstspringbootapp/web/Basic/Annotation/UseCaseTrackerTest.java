@@ -44,7 +44,7 @@ public class UseCaseTrackerTest {
 
 /**
  * 用例注解
- * Target(value = {ElementType.METHOD}) : 只能用在方法上
+ * Target(value = {ElementType.METHOD}) : 只能用在方法上(如果想要将注解应用于所有的ElementType，那么可以省去@Target 注解，但是这并不常见)
  * Retention(RetentionPolicy.RUNTIME) ：VM 将在运行期也保留注解，因此可以通过反射机制读取注解的信息。
  */
 @Target(value = {ElementType.METHOD})
